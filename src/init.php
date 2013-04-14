@@ -1,28 +1,28 @@
 <?php
 class Article_Headline_Toggle extends Plugin {
 
-	private $link;
-	private $host;
+  private $link;
+  private $host;
 
 
-	function about() {
-		return Array(
+  function about() {
+    return Array(
         1.0 // version
       , "Toggle article visibility by clicking on the headline" // description
       , "wn" // author
       , false // is system
       , "https://www.github.com/supahgreg/ttrss-article-headline-toggle" // more info URL
     );
-	}
+  }
 
 
-	function init($host) {
-		$this->link = $host->get_link();
-		$this->host = $host;
+  function init($host) {
+    $this->link = $host->get_link();
+    $this->host = $host;
 
     //$host->add_hook($host::HOOK_PREFS_TAB, $this);
     //$host->add_hook($host::HOOK_PREFS_TAB_SECTION, $this);
-	}
+  }
   
 
   /**
