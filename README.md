@@ -7,4 +7,5 @@ A [Tiny Tiny RSS](http://www.tt-rss.org) plugin.
 
 Installation
 ------------
-Copy the `article_headline_toggle` directory to the `plugins` directory of your Tiny Tiny RSS installation.
+1. Copy the `article_headline_toggle` directory to the `plugins` directory of your Tiny Tiny RSS installation.
+2. Go to Preferences / Plugins and enable `article_headline_toggle`.
