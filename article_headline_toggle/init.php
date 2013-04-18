@@ -1,13 +1,12 @@
 <?php
 class Article_Headline_Toggle extends Plugin {
 
-  private $link;
   private $host;
 
 
   function about() {
     return Array(
-        1.0 // version
+        1.1 // version
       , "Toggle article visibility by clicking on the headline" // description
       , "wn" // author
       , false // is system
@@ -17,7 +16,6 @@ class Article_Headline_Toggle extends Plugin {
 
 
   function init($host) {
-    $this->link = $host->get_link();
     $this->host = $host;
 
     //$host->add_hook($host::HOOK_PREFS_TAB, $this);
