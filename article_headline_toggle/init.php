@@ -6,12 +6,17 @@ class Article_Headline_Toggle extends Plugin {
 
   function about() {
     return Array(
-        1.1 // version
+        1.2 // version
       , "Toggle article visibility by clicking on the headline" // description
       , "wn" // author
       , false // is system
       , "https://www.github.com/supahgreg/ttrss-article-headline-toggle" // more info URL
     );
+  }
+
+
+  function api_version() {
+    return 2;
   }
 
 
