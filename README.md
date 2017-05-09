@@ -3,7 +3,7 @@ Article Headline Toggle
 
 Toggle article visibility by clicking on the headline.
 
-A [Tiny Tiny RSS](http://www.tt-rss.org) plugin.
+A [Tiny Tiny RSS](https://tt-rss.org) plugin.
 
 Installation
 ------------
