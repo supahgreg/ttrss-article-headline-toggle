@@ -5,13 +5,13 @@ class Article_Headline_Toggle extends Plugin {
 
 
   function about() {
-    return Array(
-        1.2 // version
-      , "Toggle article visibility by clicking on the headline" // description
-      , "wn" // author
-      , false // is system
-      , "https://www.github.com/supahgreg/ttrss-article-headline-toggle" // more info URL
-    );
+    return [
+      1.3, // version
+      'Toggle article visibility by clicking on the headline', // description
+      'wn', // author
+      false, // is system
+      'https://www.github.com/supahgreg/ttrss-article-headline-toggle', // more info URL
+    ];
   }
 
 
@@ -26,16 +26,13 @@ class Article_Headline_Toggle extends Plugin {
     //$host->add_hook($host::HOOK_PREFS_TAB, $this);
     //$host->add_hook($host::HOOK_PREFS_TAB_SECTION, $this);
   }
-  
+
 
   /**
    * Give a hint when hovering over an article's headline.
    */
   function get_css() {
-    return "#headlines-frame > div > div.cdmHeader > span.titleWrap {"
-         . " cursor: pointer;"
-         . "}"
-         ;
+    return '#headlines-frame > div span.titleWrap { cursor: pointer; }';
   }
 
 
@@ -49,30 +46,31 @@ class Article_Headline_Toggle extends Plugin {
    */
   function get_js() {
     return <<<'JS'
-;(function(cdmClicked) {
+;(() => {
   // Do nothing if the user is forcing the expanded view
-  if (getInitParam("cdm_expanded")) return;
+  if (getInitParam('cdm_expanded')) return;
 
-  var oldClicked = cdmClicked;
+  window.cdmClicked = (aEvent, aId, aInBody) => {
+    const id = aEvent.target.dataset.articleId || aEvent.target.parentNode.dataset.articleId;
 
-  function _cdmClicked(aEvent, aId) {
-    var titleId = "RTITLE-" + aId
-      , wasActive = $("RROW-" + aId).hasClassName("active")
-      , ret = oldClicked.call(null, aEvent, aId)
-      ;
-
-    if (!aEvent.ctrlKey && aEvent.target.id === titleId) {
-      if (wasActive)
-        cdmCollapseArticle(null, aId);
-      else
-        cdmExpandArticle(aId);
+    if (!id || aEvent.ctrlKey) {
+      return true;
     }
 
-    return ret;
-  }
+    if (document.getElementById(`RROW-${id}`).classList.contains('active')) {
+      if (aEvent.target.tagName === 'A') {
+        return true;
+      }
+      cdmCollapseActive(aEvent);
+    }
+    else {
+      setActiveArticleId(id);
+      cdmScrollToArticleId(id);
+    }
 
-  window.cdmClicked = _cdmClicked;
-})(cdmClicked);
+    return false;
+  };
+})();
 JS;
   }
 }
