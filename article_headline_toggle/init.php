@@ -6,7 +6,7 @@ class Article_Headline_Toggle extends Plugin {
 
   function about() {
     return [
-      1.4, // version
+      1.5, // version
       'Toggle article visibility by clicking on the headline', // description
       'wn', // author
       false, // is system
@@ -53,7 +53,7 @@ require(['dojo/ready'], (ready) => {
         }
         else {
           Article.setActive(id);
-          Article.cdmScrollToId(id);
+          Article.cdmMoveToId(id);
         }
 
         return false;
