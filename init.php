@@ -1,12 +1,8 @@
 <?php
 class Article_Headline_Toggle extends Plugin {
-
-  private $host;
-
-
   function about() {
     return [
-      1.5, // version
+      1.6, // version
       'Toggle article visibility by clicking on the headline', // description
       'wn', // author
       false, // is system
@@ -21,7 +17,6 @@ class Article_Headline_Toggle extends Plugin {
 
 
   function init($host) {
-    $this->host = $host;
   }
 
 
@@ -64,4 +59,3 @@ require(['dojo/ready'], (ready) => {
 JS;
   }
 }
-?>
